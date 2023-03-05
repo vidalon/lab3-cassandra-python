@@ -1,0 +1,14 @@
+from cassandra.cqlengine import columns, connection
+from cassandra.cqlengine.models import Model
+
+from config import config
+
+
+class TradesByAccountSymbolTypeAndDate(Model):
+    account         = columns.Text(primary_key=True)
+    trade_id        = columns.DateTime(primary_key=True, clustering_order="DESC")
+    type            = columns.Text(primary_key=True)
+    symbol          = columns.Text(primary_key=True)
+    shares          = columns.BigInt()
+    price           = columns.Double()
+    amount          = columns.Double()
